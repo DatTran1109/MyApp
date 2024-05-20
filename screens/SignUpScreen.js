@@ -18,12 +18,10 @@ GoogleSignin.configure({
 });
 
 const handleGoogleSignIn = async (navigation) => {
-    await GoogleSignin.hasPlayServices({
-        showPlayServicesUpdateDialog: true,
-    });
-
     try {
-        await GoogleSignin.hasPlayServices();
+        await GoogleSignin.hasPlayServices({
+            showPlayServicesUpdateDialog: true,
+        });
         const userInfo = await GoogleSignin.signIn();
         const token = await GoogleSignin.getTokens();
         await AsyncStorage.setItem('accessToken', token.accessToken);
