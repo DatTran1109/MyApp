@@ -1,10 +1,10 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import AuthNavigator from './navigators/AuthNavigator';
 import { useEffect, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { HomeScreen } from './screens';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import AuthNavigator from './navigators/AuthNavigator';
+import MainNavigator from './navigators/MainNavigator';
 
 export default function App() {
   const [accessToken, setAccessToken] = useState('');
@@ -22,7 +22,7 @@ export default function App() {
     <SafeAreaProvider>
       <StatusBar style='auto' />
       <NavigationContainer>
-        <AuthNavigator />
+        {accessToken ? <MainNavigator /> : <AuthNavigator />}
       </NavigationContainer>
     </SafeAreaProvider>
   );
